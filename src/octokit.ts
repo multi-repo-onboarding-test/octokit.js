@@ -102,3 +102,5 @@ function onSecondaryRateLimit(
     return true;
   }
 }
+
+// Rate-limit retry budget is centralized in MAX_RATE_LIMIT_RETRIES above.
