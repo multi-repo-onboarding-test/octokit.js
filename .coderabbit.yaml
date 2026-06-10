@@ -1,7 +1,2 @@
 knowledge_base:
   automatic_repository_linking: true
-  linked_repositories:
-    - repository: multi-repo-onboarding-test/core
-      instructions: Manually linked core (overlaps an auto-detected sibling; tests manual-wins dedup).
-    - repository: multi-repo-onboarding-test/oauth-app
-      instructions: Manually linked oauth-app for cross-repo context (net-new, not auto-detected).
