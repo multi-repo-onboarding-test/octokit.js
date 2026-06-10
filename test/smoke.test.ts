@@ -13,6 +13,14 @@ describe("Smoke tests", () => {
     expect(octokit.rest.repos.get).toBeInstanceOf(Function);
   });
 
+  it("Octokit exposes common REST endpoint namespaces", () => {
+    const octokit = new Octokit();
+
+    expect(octokit.rest.repos.get).toBeInstanceOf(Function);
+    expect(octokit.rest.issues.listForRepo).toBeInstanceOf(Function);
+    expect(octokit.rest.pulls.list).toBeInstanceOf(Function);
+  });
+
   it("App is a function", () => {
     expect(App).toBeInstanceOf(Function);
     expect(
