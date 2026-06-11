@@ -14,13 +14,27 @@ export type {
   PageInfoBackward,
 } from "@octokit/plugin-paginate-graphql";
 
-export const Octokit = OctokitCore.plugin(
+const OCTOKIT_PLUGIN_NAMES = [
+  "restEndpointMethods",
+  "paginateRest",
+  "paginateGraphQL",
+  "retry",
+  "throttling",
+] as const;
+
+const OCTOKIT_PLUGINS = [
   restEndpointMethods,
   paginateRest,
   paginateGraphQL,
   retry,
   throttling,
-).defaults({
+] as const;
+
+export type OctokitPluginName = (typeof OCTOKIT_PLUGIN_NAMES)[number];
+
+export const OctokitPluginNames = Object.freeze([...OCTOKIT_PLUGIN_NAMES]);
+
+export const Octokit = OctokitCore.plugin(...OCTOKIT_PLUGINS).defaults({
   userAgent: `octokit.js/${VERSION}`,
   throttle: {
     onRateLimit,
