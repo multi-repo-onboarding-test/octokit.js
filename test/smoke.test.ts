@@ -21,6 +21,7 @@ describe("Smoke tests", () => {
     expect(octokit.rest.issues.listForRepo).toBeInstanceOf(Function);
     expect(octokit.rest.pulls.list).toBeInstanceOf(Function);
     expect(octokit.rest.search.repos).toBeInstanceOf(Function);
+    expect(octokit.rest.users.getAuthenticated).toBeInstanceOf(Function);
   });
 
   it("App is a function", () => {
