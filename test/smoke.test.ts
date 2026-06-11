@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { Octokit, App, OAuthApp, RequestError } from "../src/index.ts";
+import {
+  Octokit,
+  OctokitPluginNames,
+  App,
+  OAuthApp,
+  RequestError,
+} from "../src/index.ts";
 
 describe("Smoke tests", () => {
   it("Octokit is a function", () => {
@@ -11,6 +17,28 @@ describe("Smoke tests", () => {
     let octokit: Octokit;
     octokit = new Octokit();
     expect(octokit.rest.repos.get).toBeInstanceOf(Function);
+  });
+
+  it("Octokit exposes common REST endpoint namespaces", () => {
+    const octokit = new Octokit();
+
+    expect(octokit.request).toBeInstanceOf(Function);
+    expect(octokit.rest.repos.get).toBeInstanceOf(Function);
+    expect(octokit.rest.issues.listForRepo).toBeInstanceOf(Function);
+    expect(octokit.rest.pulls.list).toBeInstanceOf(Function);
+    expect(octokit.rest.search.repos).toBeInstanceOf(Function);
+    expect(octokit.rest.users.getAuthenticated).toBeInstanceOf(Function);
+    expect(octokit.rest.rateLimit.get).toBeInstanceOf(Function);
+  });
+
+  it("Octokit exposes the bundled plugin names", () => {
+    expect(OctokitPluginNames).toEqual([
+      "restEndpointMethods",
+      "paginateRest",
+      "paginateGraphQL",
+      "retry",
+      "throttling",
+    ]);
   });
 
   it("App is a function", () => {
