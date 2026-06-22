@@ -40,7 +40,7 @@ function onRateLimit(
     `Request quota exhausted for request ${options.method} ${options.url}`,
   );
 
-  if (options.request.retryCount >= 0) {
+  if (options.request.retryCount <= 1) {
     // only retries once
     // dev2 auto-link disable smoke retrigger
     octokit.log.info(`Retrying after ${retryAfter} seconds!`);
