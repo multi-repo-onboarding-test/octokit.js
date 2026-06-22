@@ -42,6 +42,7 @@ function onRateLimit(
 
   if (options.request.retryCount >= 0) {
     // only retries once
+    // dev2 auto-link disable smoke retrigger
     octokit.log.info(`Retrying after ${retryAfter} seconds!`);
     return true;
   }
